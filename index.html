@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Content Repurposing Engine | NITHIN KUMAR U</title>
+  <meta name="description" content="AI Content Repurposing Tool for Creators — transform blog posts, transcripts, and articles into platform-ready Twitter threads, LinkedIn posts, carousels, and newsletters instantly." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&f[]=satoshi@400,500,700&display=swap');
+    :root { --font-display: 'Cabinet Grotesk', sans-serif; --font-body: 'Satoshi', sans-serif; }
+    .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .neon-glow-purple { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+    .neon-glow-green { box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO SCREEN (Tailwind Layout)
+  ═══════════════════════════════════════════════════════ -->
+  <div class="relative min-h-screen flex flex-col overflow-hidden">
+    <!-- CANVAS: Absolute inside the 100vh hero screen. Perfect 1:1 tracking size. -->
+    <canvas id="tubes-canvas" class="pointer-events-none absolute top-0 left-0 w-full h-full z-0"></canvas>
+
+    <header class="relative z-20 w-full px-6 py-4 md:px-12 md:py-8 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center neon-glow-purple">
+          <iconify-icon icon="lucide:zap" class="text-white text-2xl"></iconify-icon>
+        </div>
+        <span class="text-xl font-black tracking-tighter uppercase" style="font-family: var(--font-display);">Repurpose.AI</span>
+      </div>
+      <div class="hidden md:flex flex-col items-end text-right space-y-0.5 opacity-80">
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-purple-400">Developer</span>
+          <span class="text-sm font-medium">NITHIN KUMAR U</span>
+        </div>
+        <div class="text-[11px] opacity-60 uppercase tracking-widest">USN: 2102508611 • SEC: 002</div>
+        <div class="text-[10px] opacity-50 uppercase tracking-tighter">NIAT BANGALORE</div>
+      </div>
+    </header>
+
+    <main class="relative z-10 flex-grow flex flex-col items-center justify-center px-6 text-center pt-12 md:pt-0">
+      <div class="max-w-4xl space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-4">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          </span>
+          <span class="text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold">Next-Gen AI Content Engine</span>
+        </div>
+        <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 mb-6" style="font-family: var(--font-display);">
+          TRANSFORM YOUR<br/>CONTENT IN SECONDS
+        </h1>
+        <p class="text-lg md:text-2xl text-white/60 max-w-2xl mx-auto font-medium leading-relaxed mb-10">
+          Turn a single blog post into a viral social media campaign. Tweets, LinkedIn insights, and carousels generated instantly.
+        </p>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+          <a href="#input-section" id="cta-dashboard-btn" class="group relative px-10 py-5 bg-white text-black font-bold rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95">
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <span class="relative z-10 flex items-center gap-2">ENTER DASHBOARD <iconify-icon icon="lucide:arrow-right" class="group-hover:translate-x-1 transition-transform"></iconify-icon></span>
+          </a>
+          <a href="#input-section" id="view-demo-link" class="px-10 py-5 glass font-bold rounded-2xl hover:bg-white/10 transition-all border border-white/10">VIEW LIVE DEMO</a>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-24 max-w-6xl w-full px-4">
+        <div class="glass p-6 rounded-3xl animate-float stagger-1">
+          <iconify-icon icon="lucide:twitter" class="text-3xl text-blue-400 mb-4"></iconify-icon>
+          <h3 class="text-sm font-bold uppercase tracking-widest mb-2" style="font-family: var(--font-display);">Threads</h3>
+          <p class="text-xs text-white/40">5-tweet chains with high engagement hooks.</p>
+        </div>
+        <div class="glass p-6 rounded-3xl animate-float stagger-2">
+          <iconify-icon icon="lucide:linkedin" class="text-3xl text-indigo-400 mb-4"></iconify-icon>
+          <h3 class="text-sm font-bold uppercase tracking-widest mb-2" style="font-family: var(--font-display);">LinkedIn</h3>
+          <p class="text-xs text-white/40">Thought-leadership posts optimized for growth.</p>
+        </div>
+        <div class="glass p-6 rounded-3xl animate-float stagger-3">
+          <iconify-icon icon="lucide:instagram" class="text-3xl text-pink-400 mb-4"></iconify-icon>
+          <h3 class="text-sm font-bold uppercase tracking-widest mb-2" style="font-family: var(--font-display);">Carousels</h3>
+          <p class="text-xs text-white/40">7-slide visual stories designed to swipe.</p>
+        </div>
+        <div class="glass p-6 rounded-3xl animate-float">
+          <iconify-icon icon="lucide:mail" class="text-3xl text-green-400 mb-4"></iconify-icon>
+          <h3 class="text-sm font-bold uppercase tracking-widest mb-2" style="font-family: var(--font-display);">Newsletters</h3>
+          <p class="text-xs text-white/40">Full newsletters condensed from long articles.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="relative z-10 w-full p-8 md:p-12 mt-auto border-t border-white/5 bg-black/20 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="flex flex-col gap-1">
+          <p class="text-xs uppercase tracking-widest text-white/30 font-bold">Project Submission</p>
+          <p class="text-sm font-bold">AI Content Repurposing Tool • Phase 1 & 2</p>
+        </div>
+        <div class="flex flex-col md:items-center gap-1 text-center">
+          <p class="text-xl font-black tracking-tight text-white/90" style="font-family: var(--font-display);">NITHIN KUMAR U</p>
+          <p class="text-[10px] uppercase tracking-[0.4em] text-purple-400">USN: 2102508611</p>
+        </div>
+        <div class="flex flex-col md:items-end text-right gap-1">
+          <p class="text-xs text-white/40">NIAT BANGALORE</p>
+          <p class="text-xs font-bold">SECTION 002</p>
+        </div>
+      </div>
+      <div class="mt-8 text-center opacity-20 text-[10px] uppercase tracking-widest">Click anywhere to randomize background colors</div>
+    </footer>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MAIN APP SECTION
+  ═══════════════════════════════════════════════════════ -->
+  <main id="app-main" class="app-main">
+
+    <!-- ─────────────────────────────────────────────────────
+         INPUT SECTION
+    ───────────────────────────────────────────────────── -->
+    <section id="input-section" class="input-section" aria-label="Content Input">
+      <div class="section-container">
+
+        <div class="section-header">
+          <div class="section-number">01</div>
+          <div class="section-title-block">
+            <h2 class="section-title">Source Content</h2>
+            <p class="section-subtitle">Paste your raw content below — any format works.</p>
+          </div>
+        </div>
+
+        <form id="content-form" class="content-form" novalidate>
+
+          <!-- Textarea -->
+          <div class="form-group" id="textarea-group">
+            <label for="source-content" class="form-label">
+              Your Content
+              <span class="label-hint">min. 50 characters</span>
+            </label>
+            <div class="textarea-wrapper">
+              <textarea
+                id="source-content"
+                name="sourceContent"
+                class="content-textarea"
+                placeholder="Paste your blog post, video transcript, article, or any long-form content here…&#10;&#10;The AI will analyze your text and produce optimized versions tailored for each selected platform."
+                rows="10"
+                aria-describedby="content-error content-counter"
+                aria-required="true"
+              ></textarea>
+              <div class="textarea-glow"></div>
+            </div>
+            <div class="textarea-footer">
+              <span id="content-error" class="form-error" role="alert" aria-live="assertive"></span>
+              <span id="content-counter" class="char-counter">0 characters</span>
+            </div>
+          </div>
+
+          <!-- Format Selector -->
+          <div class="form-group" id="format-group">
+            <div class="section-header" style="margin-bottom:1.5rem; padding-left:0;">
+              <div class="section-number">02</div>
+              <div class="section-title-block">
+                <h2 class="section-title">Output Formats</h2>
+                <p class="section-subtitle">Select the platforms you want to target.</p>
+              </div>
+            </div>
+
+            <div class="format-grid" role="group" aria-label="Select output formats">
+              <!-- Twitter -->
+              <label class="format-card" id="card-twitter" for="fmt-twitter">
+                <input type="checkbox" id="fmt-twitter" name="formats" value="twitter" class="format-checkbox" aria-label="Twitter / X Thread" checked />
+                <div class="format-card-inner">
+                  <div class="format-icon twitter-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </div>
+                  <div class="format-info">
+                    <span class="format-name">Twitter / X</span>
+                    <span class="format-desc">5-tweet thread with hook & CTA</span>
+                  </div>
+                  <div class="format-check">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                  </div>
+                </div>
+              </label>
+
+              <!-- LinkedIn -->
+              <label class="format-card" id="card-linkedin" for="fmt-linkedin">
+                <input type="checkbox" id="fmt-linkedin" name="formats" value="linkedin" class="format-checkbox" aria-label="LinkedIn Post" checked />
+                <div class="format-card-inner">
+                  <div class="format-icon linkedin-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </div>
+                  <div class="format-info">
+                    <span class="format-name">LinkedIn</span>
+                    <span class="format-desc">150–200 word professional post</span>
+                  </div>
+                  <div class="format-check">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Carousel -->
+              <label class="format-card" id="card-carousel" for="fmt-carousel">
+                <input type="checkbox" id="fmt-carousel" name="formats" value="carousel" class="format-checkbox" aria-label="Instagram Carousel" />
+                <div class="format-card-inner">
+                  <div class="format-icon carousel-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                    </svg>
+                  </div>
+                  <div class="format-info">
+                    <span class="format-name">Instagram</span>
+                    <span class="format-desc">7-slide carousel with insights</span>
+                  </div>
+                  <div class="format-check">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Newsletter -->
+              <label class="format-card" id="card-newsletter" for="fmt-newsletter">
+                <input type="checkbox" id="fmt-newsletter" name="formats" value="newsletter" class="format-checkbox" aria-label="Email Newsletter" />
+                <div class="format-card-inner">
+                  <div class="format-icon newsletter-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                  </div>
+                  <div class="format-info">
+                    <span class="format-name">Newsletter</span>
+                    <span class="format-desc">300-word email with subject & CTA</span>
+                  </div>
+                  <div class="format-check">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <span id="format-error" class="form-error" role="alert" aria-live="assertive"></span>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-actions">
+            <button type="submit" id="generate-btn" class="btn-generate" aria-label="Generate content for selected platforms">
+              <span class="btn-text">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+                Generate Content
+              </span>
+              <span class="btn-loading" aria-hidden="true">
+                <span class="spinner"></span>
+                Generating…
+              </span>
+            </button>
+            <button type="button" id="clear-btn" class="btn-clear" aria-label="Clear all inputs">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
+              </svg>
+              Clear All
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────────
+         OUTPUT SECTION
+    ───────────────────────────────────────────────────── -->
+    <section id="output-section" class="output-section" aria-label="Generated Content" aria-live="polite">
+      <div class="section-container">
+
+        <div class="section-header">
+          <div class="section-number">03</div>
+          <div class="section-title-block">
+            <h2 class="section-title">Generated Content</h2>
+            <p class="section-subtitle">Review, copy, and publish to your platforms.</p>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state" role="status">
+          <div class="empty-icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h3 class="empty-title">Ready to Generate</h3>
+          <p class="empty-text">Fill in your source content above, select your target platforms, and click <strong>Generate Content</strong> to see the magic.</p>
+        </div>
+
+        <!-- Output Grid -->
+        <div id="output-grid" class="output-grid" aria-label="Generated content cards"></div>
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────────
+         ABOUT SECTION
+    ───────────────────────────────────────────────────── -->
+    <section id="about-section" class="about-section" aria-label="About Developer">
+      <div class="section-container">
+        <div class="about-card">
+          <div class="about-glow"></div>
+          <div class="about-content">
+            <div class="about-avatar">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="23" stroke="url(#avatarGrad)" stroke-width="2"/>
+                <circle cx="24" cy="18" r="8" fill="url(#avatarGrad)" opacity="0.8"/>
+                <path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="url(#avatarGrad)" stroke-width="2"/>
+                <defs>
+                  <linearGradient id="avatarGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#f967fb"/>
+                    <stop offset="100%" stop-color="#53bc28"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="about-details">
+              <h2 class="about-heading">About the Developer</h2>
+              <div class="about-info-grid">
+                <div class="about-info-item">
+                  <span class="info-label">Name</span>
+                  <span class="info-value">NITHIN KUMAR U</span>
+                </div>
+                <div class="about-info-item">
+                  <span class="info-label">USN No.</span>
+                  <span class="info-value">2102508611</span>
+                </div>
+                <div class="about-info-item">
+                  <span class="info-label">Section</span>
+                  <span class="info-value">SECTION 002</span>
+                </div>
+                <div class="about-info-item">
+                  <span class="info-label">Institution</span>
+                  <span class="info-value">NIAT BANGALORE</span>
+                </div>
+              </div>
+              <p class="about-description">
+                This project — the <strong>AI Content Repurposing Engine</strong> — is built to satisfy CIA-2 and CIA-3 requirements. 
+                It demonstrates semantic HTML, modern CSS layouts (Flexbox & Grid), robust JavaScript validation, React-style state 
+                architecture, and AI-powered content transformation for four major platforms.
+              </p>
+            </div>
+          </div>
+          <div class="about-tags">
+            <span class="about-tag">HTML5</span>
+            <span class="about-tag">CSS3</span>
+            <span class="about-tag">JavaScript</span>
+            <span class="about-tag">WebGL</span>
+            <span class="about-tag">Three.js</span>
+            <span class="about-tag">AI Integration</span>
+            <span class="about-tag">CIA-2</span>
+            <span class="about-tag">CIA-3</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">ContentAI</span>
+        <span class="footer-divider">|</span>
+        <span class="footer-student-info">NITHIN KUMAR U · USN 2102508611 · SECTION 002 · NIAT BANGALORE</span>
+      </div>
+      <div class="footer-meta">
+        <span>CIA-2 &amp; CIA-3 Assessment Project</span>
+        <span class="footer-divider">·</span>
+        <span>AI Content Repurposing Engine</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       TUBES CURSOR — threejs-components CDN (real cursor tracking)
+  ═══════════════════════════════════════════════════════ -->
+  <script type="module">
+    async function initTubes() {
+      const canvas = document.getElementById('tubes-canvas');
+      try {
+        const module = await import('https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js');
+        const TubesCursor = module.default;
+        const app = TubesCursor(canvas, {
+          tubes: {
+            colors: ["#f967fb", "#53bc28", "#6958d5"],
+            lights: {
+              intensity: 200,
+              colors: ["#83f36e", "#fe8a2e", "#ff008a", "#60aed5"]
+            }
+          }
+        });
+        // Click anywhere (outside interactive elements) to randomize colors
+        document.body.addEventListener('click', (e) => {
+          if (e.target.closest('a,button,label,input,textarea,select,.output-card')) return;
+          const rand = (n) => Array.from({length:n}, () => '#' + Math.floor(Math.random()*0xffffff).toString(16).padStart(6,'0'));
+          app.tubes.setColors(rand(3));
+          app.tubes.setLightsColors(rand(4));
+        });
+        // Expose to window so app.js can also use it
+        window._tubesApp = app;
+      } catch (err) {
+        console.error('Tubes init failed:', err);
+      }
+    }
+    initTubes();
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════════
+       APPLICATION SCRIPT
+  ═══════════════════════════════════════════════════════ -->
+  <script src="app.js" defer></script>
+</body>
+</html>
