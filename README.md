@@ -44,9 +44,8 @@ A major technical challenge was the scaling of the 3D WebGL canvas. When the can
 ## 👨‍💻 Developer Information
 
 - **Developer**: NITHIN KUMAR U
-- **USN**: 2102508611
-- **Section**: 002
 - **Institution**: NIAT BANGALORE
 
 ---
 *Built as part of the AI Content Repurposing Tool project submission.*
+
